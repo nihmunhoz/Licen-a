@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weasley's Coffee Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap');
+        
+        body {
+            font-family: 'IM Fell English SC', serif;
+            background-color: #0d0c0b;
+            color: #e5d8b8;
+        }
+
+        .cinzel {
+            font-family: 'Cinzel', serif;
+        }
+
+        .scroll-bg {
+            background-image: url('https://media.istockphoto.com/id/133306941/pt/foto/antigo-papel.webp?a=1&b=1&s=612x612&w=0&k=20&c=313ElBd3sH1bcXOQ30pw9xURTm1JwBVEppssxaxdseU=');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        .shadow-gold {
+            text-shadow: 2px 2px 4px #b8860b;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- Navbar -->
+    <nav class="p-6 fixed top-0 w-full z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo - Espaço para a logo da loja -->
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-yellow-800 rounded-full flex items-center justify-center mr-2">
+                    <!-- Espaço para a logo -->
+                    <span class="text-xl font-bold cinzel">WL</span>
+                </div>
+                <h1 class="text-3xl font-bold cinzel shadow-gold">Weasley's Coffee Shop</h1>
+            </div>
+
+            <!-- Menu de navegação -->
+            <div class="hidden md:flex space-x-6 text-xl">
+                <a href="#about" class="hover:text-yellow-600 transition-colors duration-300">Sobre</a>
+                <a href="#menu" class="hover:text-yellow-600 transition-colors duration-300">Menu</a>
+                <a href="#media" class="hover:text-yellow-600 transition-colors duration-300">Galeria</a>
+                <a href="#licensing" class="hover:text-yellow-600 transition-colors duration-300">Licenças</a>
+            </div>
+
+            <!-- Botão de menu mobile -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-200 focus:outline-none">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden fixed top-20 right-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-lg shadow-lg py-4 z-40">
+        <a href="#about" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Sobre</a>
+        <a href="#menu" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Menu</a>
+        <a href="#media" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Galeria</a>
+        <a href="#licensing" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Licenças</a>
+    </div>
+
+    <!-- Seção de destaque -->
+    <header class="scroll-bg flex items-center justify-center min-h-screen text-center p-4 pt-20">
+        <div>
+            <!-- Ícone/ilustração de uma varinha mágica -->
+            <div class="mb-6">
+                <svg class="w-24 h-24 mx-auto text-yellow-600 shadow-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M15 4l-11 11M9 13l2-2M15 4a2 2 0 11-4 0 2 2 0 014 0zM19 8a2 2 0 11-4 0 2 2 0 014 0zM21 12a2 2 0 11-4 0 2 2 0 014 0zM12 21l2-2"></path>
+                </svg>
+            </div>
+            <h2 class="text-6xl md:text-8xl font-bold cinzel shadow-gold mb-4 animate-pulse">Magia em Cada Gole</h2>
+            <p class="text-xl md:text-2xl italic">Um lugar onde a fantasia encontra o sabor</p>
+        </div>
+    </header>
+
+    <!-- Seção de Conteúdo (Sobre nós) -->
+    <main class="container mx-auto p-8 lg:p-16">
+        <section id="about" class="mb-16">
+            <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Nossa História</h3>
+            <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
+                No coração de um beco mágico, a Weasley's Coffee Shop é o refúgio perfeito para bruxos e trouxas. Nossos grãos são colhidos com feitiços de prosperidade e torrados com fogo de dragão, garantindo um aroma e sabor que transcendem o mundo comum. Venha se aquecer com uma dose de nossa poção do amor (ou apenas um cappuccino) e sinta a magia da nossa família em cada xícara.
+            </p>
+        </section>
+
+        <!-- Seção de Menu -->
+        <section id="menu" class="mb-16">
+            <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Nosso Menu Mágico</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Item 1 -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Espresso Patronum</h4>
+                    <p class="text-lg text-gray-400 mb-4">Um shot poderoso de café que afasta qualquer Dementador da sua segunda-feira.</p>
+                    <span class="text-xl font-bold text-yellow-500">R$ 12,00</span>
+                </div>
+                <!-- Item 2 -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Poção Polissuco</h4>
+                    <p class="text-lg text-gray-400 mb-4">Um suco verde e refrescante que te dá a energia de um Niffler por um dia inteiro.</p>
+                    <span class="text-xl font-bold text-yellow-500">R$ 15,00</span>
+                </div>
+                <!-- Item 3 -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Café da Varinha</h4>
+                    <p class="text-lg text-gray-400 mb-4">Um café cremoso com arte de latte em formato de Varinha das Varinhas.</p>
+                    <span class="text-xl font-bold text-yellow-500">R$ 18,00</span>
+                </div>
+                <!-- Item 4 -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Elixir da Vida</h4>
+                    <p class="text-lg text-gray-400 mb-4">Um chá de ervas que te deixa mais sábio a cada gole. Perfeito para estudar para os N.O.M.s.</p>
+                    <span class="text-xl font-bold text-yellow-500">R$ 10,00</span>
+                </div>
+                <!-- Item 5 -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Bolo de Caldeirão</h4>
+                    <p class="text-lg text-gray-400 mb-4">Um delicioso bolo de chocolate em formato de caldeirão. Cuidado para não cair dentro!</p>
+                    <span class="text-xl font-bold text-yellow-500">R$ 25,00</span>
+                </div>
+                <!-- Item 6 -->
+                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Chá da Adivinhação</h4>
+                    <p class="text-lg text-gray-400 mb-4">Chá de Camomila que, com um pouco de sorte, te mostrará seu futuro (ou pelo menos um bom dia).</p>
+                    <span class="text-xl font-bold text-yellow-500">R$ 9,00</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Galeria e Mídia -->
+        <section id="media" class="mb-16">
+            <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Galeria Mágica</h3>
+            
+            <!-- Vídeo Ilustrativo -->
+            <div class="mb-8">
+                <h4 class="text-2xl cinzel font-bold mb-4">Um Olhar Mágico</h4>
+                <!-- Placeholder para vídeo ilustrativo -->
+                <div class="aspect-w-16 aspect-h-9 w-full rounded-lg overflow-hidden shadow-2xl">
+                    <!-- Espaço para iframe de vídeo (ex: YouTube) -->
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Imagens de Cafés -->
+            <div>
+                <h4 class="text-2xl cinzel font-bold mb-4">Nossos Tesouros</h4>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Imagem 1 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-full h-80 bg-cover bg-center rounded-lg shadow-2xl transition-transform transform hover:scale-105 duration-300" style="background-image: url('https://placehold.co/600x400/1e293b/6d4410?text=Poção+Polissuco');"></div>
+                        <p class="mt-4 text-xl cinzel font-bold text-center">Poção Polissuco</p>
+                    </div>
+                    <!-- Imagem 2 -->
+                    <div class="flex flex-col items-center">
+                        <div class="w-full h-80 bg-cover bg-center rounded-lg shadow-2xl transition-transform transform hover:scale-105 duration-300" style="background-image: url('https://placehold.co/600x400/1e293b/6d4410?text=Expresso+Patronum');"></div>
+                        <p class="mt-4 text-xl cinzel font-bold text-center">Expresso Patronum</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Licenciamento -->
+        <section id="licensing" class="bg-gray-800 rounded-lg p-8 shadow-inner border border-gray-700">
+            <h3 class="text-4xl cinzel font-bold text-center mb-6 shadow-gold">Licenciamento de Uso Visual</h3>
+            <p class="mb-4 text-lg">
+                Esta seção é dedicada à transparência sobre as licenças de uso dos elementos visuais utilizados neste site.
+            </p>
+            <ul class="space-y-4 text-gray-400">
+                <li class="border-b border-gray-700 pb-2">
+                    <strong class="text-yellow-600">Logo e Ícone/Ilustração:</strong> [Descreva a fonte e o tipo de licença (ex: Criado por Fulano de Tal, Licença Creative Commons BY 4.0)]
+                </li>
+                <li class="border-b border-gray-700 pb-2">
+                    <strong class="text-yellow-600">Vídeo Ilustrativo:</strong> [Nome do Vídeo, Criador, Plataforma (ex: YouTube), e a Licença (ex: Licença Padrão do YouTube, ou uso autorizado)]
+                </li>
+                <li class="border-b border-gray-700 pb-2">
+                    <strong class="text-yellow-600">Imagens de Cafés:</strong> [Fonte das Imagens (ex: Banco de Imagens Freepik), Nome da Imagem, Link para a Imagem, e a Licença (ex: Licença de Uso Gratuito com Atribuição)]
+                </li>
+                <li class="border-b border-gray-700 pb-2">
+                    <strong class="text-yellow-600">Fontes:</strong> 'IM Fell English SC' e 'Cinzel' (Licença Open Font License - SIL OFL).
+                </li>
+                <li class="pb-2">
+                    <strong class="text-yellow-600">Texturas e Backgrounds:</strong> A imagem de fundo utilizada é "Antigo papel" (ID: 133306941) da iStockphoto, de propriedade da Getty Images. A utilização desta imagem requer uma licença paga. Para fins educacionais, esta URL é apenas um exemplo.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-center py-6 border-t border-gray-800 mt-16">
+        <p class="text-sm">Desenvolvido com Magia e ❤️ para fins educacionais.</p>
+        <p class="text-xs text-gray-500">Todo o conteúdo temático de Harry Potter é propriedade intelectual de J.K. Rowling e Warner Bros. Entertainment. Este é um projeto de fã, sem fins comerciais.</p>
+    </footer>
+
+    <!-- Script para o menu mobile -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
