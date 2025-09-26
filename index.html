@@ -8,54 +8,72 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap');
         
+        /* Estilos base */
         body {
             font-family: 'IM Fell English SC', serif;
             background-color: #0d0c0b;
             color: #e5d8b8;
+            /* Adicionado scroll-padding para compensar a navbar fixa */
+            scroll-padding-top: 5.5rem; /* Ajuste para a altura da navbar (~88px) */
         }
 
         .cinzel {
             font-family: 'Cinzel', serif;
         }
 
-        .scroll-bg {
-            background-image: url('https://media.istockphoto.com/id/133306941/pt/foto/antigo-papel.webp?a=1&b=1&s=612x612&w=0&k=20&c=313ElBd3sH1bcXOQ30pw9xURTm1JwBVEppssxaxdseU=');
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-        }
-
+        /* Sombra de texto dourada */
         .shadow-gold {
             text-shadow: 2px 2px 4px #b8860b;
+        }
+
+        /* Estilo para garantir que o alvo da rolagem fique centralizado */
+        .scroll-target {
+            scroll-margin-top: calc(50vh - 5rem); 
+        }
+
+        /* Melhoria: Efeito de borda mágica nos itens do menu */
+        .menu-item-card {
+            box-shadow: 0 0 15px rgba(184, 134, 11, 0.5);
+            transition: all 0.3s ease;
+        }
+        .menu-item-card:hover {
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 5px rgba(184, 134, 11, 1);
+        }
+
+        /* Estilo para o modal de reserva */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
         }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
 
     <!-- Navbar -->
-    <nav class="p-6 fixed top-0 w-full z-50 bg-gray-900 bg-opacity-80 backdrop-blur-md shadow-lg">
+    <nav class="p-4 md:p-6 fixed top-0 w-full z-50 bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-2xl">
         <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo - Espaço para a logo da loja -->
+            <!-- Logo - Substituído por Imagem -->
             <div class="flex items-center">
-                <div class="w-10 h-10 bg-yellow-800 rounded-full flex items-center justify-center mr-2">
-                    <!-- Espaço para a logo -->
-                    <span class="text-xl font-bold cinzel">WL</span>
-                </div>
-                <h1 class="text-3xl font-bold cinzel shadow-gold">Weasley's Coffee Shop</h1>
+                <img 
+                    src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-2ddc-622f-9b3d-ec97cd5327f4/raw?se=2025-09-26T19%3A48%3A47Z&sp=r&sv=2024-08-04&sr=b&scid=72af18dd-4eff-5354-be09-a24611cbb9b3&skoid=38550de5-1fab-49d1-9ebb-83af5557cc43&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-26T16%3A58%3A19Z&ske=2025-09-27T16%3A58%3A19Z&sks=b&skv=2024-08-04&sig=ShDAsLdtgtqBekD1ABviGP7paQiglSPDABCnrKKE1S0%3D" 
+                    alt="Weasley's Logo" 
+                    class="w-10 h-10 object-contain mr-3 rounded-full"
+                    onerror="this.onerror=null;this.src='https://placehold.co/40x40/b8860b/000000?text=WL'"
+                >
+                <h1 class="text-2xl md:text-3xl font-bold cinzel shadow-gold">Weasley's Coffee Shop</h1>
             </div>
 
-            <!-- Menu de navegação -->
-            <div class="hidden md:flex space-x-6 text-xl">
-                <a href="#about" class="hover:text-yellow-600 transition-colors duration-300">Sobre</a>
-                <a href="#menu" class="hover:text-yellow-600 transition-colors duration-300">Menu</a>
-                <a href="#media" class="hover:text-yellow-600 transition-colors duration-300">Galeria</a>
-                <a href="#licensing" class="hover:text-yellow-600 transition-colors duration-300">Licenças</a>
+            <!-- Menu de navegação (Desktop) -->
+            <div class="hidden md:flex space-x-8 text-xl">
+                <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="about">Sobre</a>
+                <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="menu">Destaques</a>
+                <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="media">Galeria</a>
+                <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="licensing">Licenças</a>
             </div>
 
             <!-- Botão de menu mobile -->
             <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-gray-200 focus:outline-none">
+                <button id="mobile-menu-button" aria-label="Menu Mobile" class="text-gray-200 p-2 rounded-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                 </button>
             </div>
@@ -63,151 +81,388 @@
     </nav>
     
     <!-- Menu Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden fixed top-20 right-0 w-full bg-gray-900 bg-opacity-90 backdrop-blur-lg shadow-lg py-4 z-40">
-        <a href="#about" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Sobre</a>
-        <a href="#menu" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Menu</a>
-        <a href="#media" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Galeria</a>
-        <a href="#licensing" class="block text-center py-2 hover:text-yellow-600 transition-colors duration-300">Licenças</a>
+    <div id="mobile-menu" class="hidden md:hidden fixed top-[4.5rem] right-0 w-full bg-gray-900 bg-opacity-95 backdrop-blur-lg shadow-2xl py-4 z-40">
+        <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="about">Sobre</a>
+        <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="menu">Destaques</a>
+        <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="media">Galeria</a>
+        <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="licensing">Licenças</a>
     </div>
 
-    <!-- Seção de destaque -->
-    <header class="scroll-bg flex items-center justify-center min-h-screen text-center p-4 pt-20">
-        <div>
-            <!-- Ícone/ilustração de uma varinha mágica -->
-            <div class="mb-6">
-                <svg class="w-24 h-24 mx-auto text-yellow-600 shadow-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M15 4l-11 11M9 13l2-2M15 4a2 2 0 11-4 0 2 2 0 014 0zM19 8a2 2 0 11-4 0 2 2 0 014 0zM21 12a2 2 0 11-4 0 2 2 0 014 0zM12 21l2-2"></path>
-                </svg>
+    <!-- Carrossel de Destaque -->
+    <section id="carousel-container" class="relative w-full overflow-hidden min-h-screen">
+        <!-- Slides Container -->
+        <div id="slides-container" class="h-full">
+            
+            <!-- Slide 1 (Aromas e Grãos) - Imagem 1 -->
+            <div class="carousel-slide absolute top-0 left-0 w-full h-full duration-1000 ease-in-out transition-opacity flex items-center justify-center text-center p-4" style="background-image: url('https://plus.unsplash.com/premium_photo-1675237625862-d982e7f44696?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-attachment: fixed; padding-top: 8rem;">
+                <div class="bg-gray-900/20 p-6 md:p-8 rounded-xl backdrop-blur-sm">
+                    <!-- Ícone removido conforme solicitado -->
+                    <h2 class="text-3xl md:text-5xl font-bold cinzel shadow-gold mb-2 text-white">Magia em Cada Gole</h2>
+                    <p class="text-base md:text-lg italic text-yellow-300">Um lugar onde a fantasia encontra o sabor</p>
+                </div>
             </div>
-            <h2 class="text-6xl md:text-8xl font-bold cinzel shadow-gold mb-4 animate-pulse">Magia em Cada Gole</h2>
-            <p class="text-xl md:text-2xl italic">Um lugar onde a fantasia encontra o sabor</p>
-        </div>
-    </header>
 
-    <!-- Seção de Conteúdo (Sobre nós) -->
-    <main class="container mx-auto p-8 lg:p-16">
-        <section id="about" class="mb-16">
+            <!-- Slide 2 (Leitura e Cozy) - Imagem 2 -->
+            <div class="carousel-slide absolute top-0 left-0 w-full h-full duration-1000 ease-in-out transition-opacity opacity-0 flex items-center justify-center text-center p-4" style="background-image: url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-attachment: fixed; padding-top: 8rem;">
+                <div class="bg-gray-900/20 p-6 md:p-8 rounded-xl backdrop-blur-sm">
+                    <h2 class="text-3xl md:text-5xl font-bold cinzel shadow-gold mb-2 text-white">Refúgio para Bruxo e Trouxa</h2>
+                    <p class="text-base md:text-lg italic text-yellow-300">Seu canto favorito para ler, escrever ou planejar um feitiço.</p>
+                </div>
+            </div>
+
+            <!-- Slide 3 (Ambiente Aconchegante) - Imagem 3 -->
+            <div class="carousel-slide absolute top-0 left-0 w-full h-full duration-1000 ease-in-out transition-opacity opacity-0 flex items-center justify-center text-center p-4" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-attachment: fixed; padding-top: 8rem;">
+                <div class="bg-gray-900/20 p-6 md:p-8 rounded-xl backdrop-blur-sm">
+                    <h2 class="text-3xl md:text-5xl font-bold cinzel shadow-gold mb-2 text-white">Onde os Feitiços Acontecem</h2>
+                    <p class="text-base md:text-lg italic text-yellow-300">Desfrute do calor da nossa lareira e dos nossos doces mágicos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botões de Navegação (Anterior/Próximo) -->
+        <button id="prev-btn" class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white p-3 rounded-full bg-gray-900/50 hover:bg-gray-700/70 transition-colors duration-300 z-40" aria-label="Slide Anterior">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button id="next-btn" class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white p-3 rounded-full bg-gray-900/50 hover:bg-gray-700/70 transition-colors duration-300 z-40" aria-label="Próximo Slide">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+
+        <!-- Indicadores (Dots) -->
+        <div id="dot-indicators" class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-3 z-40">
+            <!-- Dots serão injetados pelo JavaScript -->
+        </div>
+    </section>
+
+    <!-- Seção de Conteúdo -->
+    <main class="container mx-auto p-4 lg:p-12">
+        <!-- Seção de Sobre nós -->
+        <section id="about" class="mb-20 scroll-target bg-gray-800/50 p-8 rounded-xl shadow-2xl border border-gray-700">
             <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Nossa História</h3>
-            <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
-                No coração de um beco mágico, a Weasley's Coffee Shop é o refúgio perfeito para bruxos e trouxas. Nossos grãos são colhidos com feitiços de prosperidade e torrados com fogo de dragão, garantindo um aroma e sabor que transcendem o mundo comum. Venha se aquecer com uma dose de nossa poção do amor (ou apenas um cappuccino) e sinta a magia da nossa família em cada xícara.
-            </p>
+            <div class="max-w-4xl mx-auto">
+                <p class="text-lg leading-relaxed text-center mb-4">
+                    No coração de um beco mágico, a Weasley's Coffee Shop é o refúgio perfeito para bruxos e trouxas. Nossos grãos são colhidos com feitiços de prosperidade e torrados com fogo de dragão, garantindo um aroma e sabor que transcendem o mundo comum.
+                </p>
+                <p class="text-lg leading-relaxed text-center italic text-yellow-500">
+                    Venha se aquecer com uma dose de nossa poção do amor (ou apenas um cappuccino) e sinta a magia da nossa família em cada xícara.
+                </p>
+            </div>
         </section>
 
-        <!-- Seção de Menu -->
-        <section id="menu" class="mb-16">
-            <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Nosso Menu Mágico</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Item 1 -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Espresso Patronum</h4>
+        <!-- Seção de Destaques (Antigo Menu) -->
+        <section id="menu" class="mb-20 scroll-target">
+            <h3 class="text-4xl cinzel font-bold text-center mb-10 shadow-gold">Destaques Mágicos</h3>
+            <!-- 3 itens de destaque -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Item 1: Espresso Patronum -->
+                <div class="bg-gray-800 rounded-lg p-6 menu-item-card">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-400 mb-2">Espresso Patronum</h4>
                     <p class="text-lg text-gray-400 mb-4">Um shot poderoso de café que afasta qualquer Dementador da sua segunda-feira.</p>
-                    <span class="text-xl font-bold text-yellow-500">R$ 12,00</span>
+                    <span class="text-xl font-bold text-yellow-500 border-b border-yellow-600/50 pb-1">R$ 12,00</span>
                 </div>
-                <!-- Item 2 -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Poção Polissuco</h4>
-                    <p class="text-lg text-gray-400 mb-4">Um suco verde e refrescante que te dá a energia de um Niffler por um dia inteiro.</p>
-                    <span class="text-xl font-bold text-yellow-500">R$ 15,00</span>
-                </div>
-                <!-- Item 3 -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Café da Varinha</h4>
+                <!-- Item 2: Café da Varinha -->
+                <div class="bg-gray-800 rounded-lg p-6 menu-item-card">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-400 mb-2">Café da Varinha</h4>
                     <p class="text-lg text-gray-400 mb-4">Um café cremoso com arte de latte em formato de Varinha das Varinhas.</p>
-                    <span class="text-xl font-bold text-yellow-500">R$ 18,00</span>
+                    <span class="text-xl font-bold text-yellow-500 border-b border-yellow-600/50 pb-1">R$ 18,00</span>
                 </div>
-                <!-- Item 4 -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Elixir da Vida</h4>
-                    <p class="text-lg text-gray-400 mb-4">Um chá de ervas que te deixa mais sábio a cada gole. Perfeito para estudar para os N.O.M.s.</p>
-                    <span class="text-xl font-bold text-yellow-500">R$ 10,00</span>
-                </div>
-                <!-- Item 5 -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Bolo de Caldeirão</h4>
+                <!-- Item 3: Bolo de Caldeirão -->
+                <div class="bg-gray-800 rounded-lg p-6 menu-item-card">
+                    <h4 class="text-2xl cinzel font-bold text-yellow-400 mb-2">Bolo de Caldeirão</h4>
                     <p class="text-lg text-gray-400 mb-4">Um delicioso bolo de chocolate em formato de caldeirão. Cuidado para não cair dentro!</p>
-                    <span class="text-xl font-bold text-yellow-500">R$ 25,00</span>
+                    <span class="text-xl font-bold text-yellow-500 border-b border-yellow-600/50 pb-1">R$ 25,00</span>
                 </div>
-                <!-- Item 6 -->
-                <div class="bg-gray-800 rounded-lg p-6 shadow-2xl hover:scale-105 transition-transform duration-300">
-                    <h4 class="text-2xl cinzel font-bold text-yellow-600 mb-2">Chá da Adivinhação</h4>
-                    <p class="text-lg text-gray-400 mb-4">Chá de Camomila que, com um pouco de sorte, te mostrará seu futuro (ou pelo menos um bom dia).</p>
-                    <span class="text-xl font-bold text-yellow-500">R$ 9,00</span>
-                </div>
+            </div>
+
+            <!-- Chamada para Ação (CTA) para Agendamento/Visita -->
+            <div class="mt-12 text-center">
+                <p class="text-xl text-yellow-300 italic mb-6 max-w-xl mx-auto">
+                    Nosso cardápio completo é ainda maior, mas você só vai descobrir toda a magia nos visitando.
+                </p>
+                <!-- Botão agora tem o ID para ser interativo -->
+                <button id="reserve-button" class="px-10 py-4 bg-yellow-600 text-gray-900 font-bold cinzel text-xl rounded-xl shadow-2xl hover:bg-yellow-500 transition-all duration-300 transform hover:scale-[1.03] border-4 border-yellow-800">
+                    Reservar Mesa Mágica
+                </button>
             </div>
         </section>
 
         <!-- Seção de Galeria e Mídia -->
-        <section id="media" class="mb-16">
+        <section id="media" class="mb-20 scroll-target bg-gray-800/50 p-8 rounded-xl shadow-2xl border border-gray-700">
             <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Galeria Mágica</h3>
             
             <!-- Vídeo Ilustrativo -->
-            <div class="mb-8">
-                <h4 class="text-2xl cinzel font-bold mb-4">Um Olhar Mágico</h4>
-                <!-- Placeholder para vídeo ilustrativo -->
-                <div class="aspect-w-16 aspect-h-9 w-full rounded-lg overflow-hidden shadow-2xl">
+            <div class="mb-12">
+                <h4 class="text-2xl cinzel font-bold mb-4 text-yellow-600">Um Olhar Mágico</h4>
+                <!-- Placeholder para vídeo ilustrativo (Responsivo) -->
+                <div class="aspect-w-16 aspect-h-9 w-full rounded-lg overflow-hidden shadow-2xl" style="--tw-aspect-w: 16; --tw-aspect-h: 9;">
                     <!-- Espaço para iframe de vídeo (ex: YouTube) -->
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Um Olhar Mágico" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
 
-            <!-- Imagens de Cafés -->
+            <!-- Imagens de Cafés (Placeholders mantidos) -->
             <div>
-                <h4 class="text-2xl cinzel font-bold mb-4">Nossos Tesouros</h4>
+                <h4 class="text-2xl cinzel font-bold mb-4 text-yellow-600">Nossos Tesouros</h4>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Imagem 1 -->
                     <div class="flex flex-col items-center">
                         <div class="w-full h-80 bg-cover bg-center rounded-lg shadow-2xl transition-transform transform hover:scale-105 duration-300" style="background-image: url('https://placehold.co/600x400/1e293b/6d4410?text=Poção+Polissuco');"></div>
-                        <p class="mt-4 text-xl cinzel font-bold text-center">Poção Polissuco</p>
+                        <p class="mt-4 text-xl cinzel font-bold text-center text-yellow-300">Poção Polissuco</p>
                     </div>
                     <!-- Imagem 2 -->
                     <div class="flex flex-col items-center">
                         <div class="w-full h-80 bg-cover bg-center rounded-lg shadow-2xl transition-transform transform hover:scale-105 duration-300" style="background-image: url('https://placehold.co/600x400/1e293b/6d4410?text=Expresso+Patronum');"></div>
-                        <p class="mt-4 text-xl cinzel font-bold text-center">Expresso Patronum</p>
+                        <p class="mt-4 text-xl cinzel font-bold text-center text-yellow-300">Expresso Patronum</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Seção de Licenciamento -->
-        <section id="licensing" class="bg-gray-800 rounded-lg p-8 shadow-inner border border-gray-700">
+        <section id="licensing" class="scroll-target bg-gray-800 rounded-lg p-8 shadow-2xl border border-gray-700">
             <h3 class="text-4xl cinzel font-bold text-center mb-6 shadow-gold">Licenciamento de Uso Visual</h3>
-            <p class="mb-4 text-lg">
+            <p class="mb-6 text-lg text-center max-w-3xl mx-auto text-gray-300">
                 Esta seção é dedicada à transparência sobre as licenças de uso dos elementos visuais utilizados neste site.
             </p>
-            <ul class="space-y-4 text-gray-400">
-                <li class="border-b border-gray-700 pb-2">
-                    <strong class="text-yellow-600">Logo e Ícone/Ilustração:</strong> [Descreva a fonte e o tipo de licença (ex: Criado por Fulano de Tal, Licença Creative Commons BY 4.0)]
+            <ul class="space-y-4 text-gray-400 max-w-4xl mx-auto">
+                <li class="border-l-4 border-yellow-600 pl-4 py-1">
+                    <strong class="text-yellow-400">Logo:</strong> Imagem fornecida pelo usuário. Favor verificar a licença de uso comercial.
                 </li>
-                <li class="border-b border-gray-700 pb-2">
-                    <strong class="text-yellow-600">Vídeo Ilustrativo:</strong> [Nome do Vídeo, Criador, Plataforma (ex: YouTube), e a Licença (ex: Licença Padrão do YouTube, ou uso autorizado)]
+                <li class="border-l-4 border-yellow-600 pl-4 py-1">
+                    <strong class="text-yellow-400">Vídeo Ilustrativo:</strong> [Nome do Vídeo, Criador, Plataforma (ex: YouTube), e a Licença (ex: Licença Padrão do YouTube, ou uso autorizado)]
                 </li>
-                <li class="border-b border-gray-700 pb-2">
-                    <strong class="text-yellow-600">Imagens de Cafés:</strong> [Fonte das Imagens (ex: Banco de Imagens Freepik), Nome da Imagem, Link para a Imagem, e a Licença (ex: Licença de Uso Gratuito com Atribuição)]
+                <li class="border-l-4 border-yellow-600 pl-4 py-1">
+                    <strong class="text-yellow-400">Imagens de Cafés:</strong> [Fonte das Imagens (ex: Banco de Imagens Freepik), Nome da Imagem, Link para a Imagem, e a Licença (ex: Licença de Uso Gratuito com Atribuição)]
                 </li>
-                <li class="border-b border-gray-700 pb-2">
-                    <strong class="text-yellow-600">Fontes:</strong> 'IM Fell English SC' e 'Cinzel' (Licença Open Font License - SIL OFL).
+                <li class="border-l-4 border-yellow-600 pl-4 py-1">
+                    <strong class="text-yellow-400">Fontes:</strong> 'IM Fell English SC' e 'Cinzel' (Licença Open Font License - SIL OFL).
                 </li>
-                <li class="pb-2">
-                    <strong class="text-yellow-600">Texturas e Backgrounds:</strong> A imagem de fundo utilizada é "Antigo papel" (ID: 133306941) da iStockphoto, de propriedade da Getty Images. A utilização desta imagem requer uma licença paga. Para fins educacionais, esta URL é apenas um exemplo.
+                <li class="border-l-4 border-yellow-600 pl-4 py-1">
+                    <strong class="text-yellow-400">Imagens do Carrossel (Unsplash):</strong> Todas as três imagens de fundo do carrossel são cortesia da plataforma Unsplash, usadas sob a Licença Unsplash. Elas representam temas de café, leitura e conforto.
                 </li>
             </ul>
         </section>
     </main>
 
     <!-- Rodapé -->
-    <footer class="bg-gray-900 text-center py-6 border-t border-gray-800 mt-16">
-        <p class="text-sm">Desenvolvido com Magia e ❤️ para fins educacionais.</p>
-        <p class="text-xs text-gray-500">Todo o conteúdo temático de Harry Potter é propriedade intelectual de J.K. Rowling e Warner Bros. Entertainment. Este é um projeto de fã, sem fins comerciais.</p>
+    <footer class="bg-gray-900 text-center py-6 border-t border-gray-700 mt-20">
+        <p class="text-sm text-gray-300">Desenvolvido com Magia e ❤️ para fins educacionais.</p>
+        <p class="text-xs text-gray-500 mt-1">Todo o conteúdo temático de Harry Potter é propriedade intelectual de J.K. Rowling e Warner Bros. Entertainment. Este é um projeto de fã, sem fins comerciais.</p>
     </footer>
 
-    <!-- Script para o menu mobile -->
+    <!-- MODAL CUSTOMIZADO DE RESERVA (NOVO) -->
+    <div id="reserve-modal" class="hidden fixed inset-0 z-[100] modal-overlay flex items-center justify-center p-4">
+        <div class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-lg w-full transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+            <div class="flex justify-between items-start mb-4">
+                <h4 class="text-3xl cinzel font-bold text-yellow-400 shadow-gold">Reserva Mágica</h4>
+                <button id="close-modal-button" class="text-gray-400 hover:text-yellow-500 transition-colors duration-200" aria-label="Fechar Modal">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <p class="text-lg text-gray-300 mb-6">
+                **Portal de Reservas em Manutenção Mágica!**
+            </p>
+            <p class="text-md text-gray-400 mb-6">
+                Neste momento, nosso sistema online está sendo atualizado por duendes de banco.
+                Por favor, ligue diretamente para nossa loja ou venha nos visitar para garantir sua mesa!
+                A magia está sempre nos esperando. ✨
+            </p>
+            <button id="modal-ok-button" class="w-full py-3 bg-yellow-600 text-gray-900 font-bold rounded-lg hover:bg-yellow-500 transition-colors duration-300">
+                Entendido, vou visitar!
+            </button>
+        </div>
+    </div>
+    <!-- FIM DO MODAL -->
+
+    <!-- Script de Interação e Rolagem Suave Centralizada -->
     <script>
+        // Variáveis globais para os elementos de menu
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
+        const scrollLinks = document.querySelectorAll('.scroll-link');
 
+        // ======== LÓGICA DO CARROSSEL DE DESTAQUE ========
+        const carouselContainer = document.getElementById('carousel-container');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dotsContainer = document.getElementById('dot-indicators');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        let currentSlide = 0;
+        let slideInterval;
+        const intervalTime = 3000; // 3 segundos
+
+        // 1. Lógica do Menu Mobile
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
+
+        // 2. Função para mostrar o slide
+        function showSlide(index) {
+            // Garante que o índice esteja dentro dos limites
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+
+            slides.forEach((slide, i) => {
+                if (i === currentSlide) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                    slide.style.zIndex = '10'; // Traz o slide ativo para a frente
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0');
+                    slide.style.zIndex = '0'; // Mantém os slides inativos atrás
+                }
+            });
+
+            // Atualiza os indicadores (dots)
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, i) => {
+                dot.classList.remove('bg-yellow-500');
+                dot.classList.add('bg-gray-400');
+                if (i === currentSlide) {
+                    dot.classList.add('bg-yellow-500');
+                }
+            });
+        }
+
+        // 3. Funções de controle do carrossel
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            // Configura o novo tempo de intervalo (3000ms)
+            slideInterval = setInterval(nextSlide, intervalTime);
+        }
+
+        // 4. Cria e adiciona os indicadores (dots)
+        slides.forEach((slide, index) => {
+            const dot = document.createElement('span');
+            dot.classList.add('dot', 'w-3', 'h-3', 'rounded-full', 'bg-gray-400', 'cursor-pointer', 'transition-colors', 'duration-300');
+            dot.setAttribute('data-slide-index', index);
+            dot.addEventListener('click', (e) => {
+                const index = parseInt(e.target.getAttribute('data-slide-index'));
+                showSlide(index);
+                resetInterval();
+            });
+            dotsContainer.appendChild(dot);
+        });
+
+        // 5. Event listeners para botões do carrossel
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+
+        // 6. Função de Rolagem Suave e Centralizada
+        function smoothScrollToCenter(targetElement) {
+            if (!targetElement) return;
+
+            const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+            const elementHeight = targetElement.offsetHeight;
+            const viewportHeight = window.innerHeight;
+            const targetScrollPosition = elementPosition - (viewportHeight / 2) + (elementHeight / 2);
+
+            window.scrollTo({
+                top: targetScrollPosition,
+                behavior: 'smooth'
+            });
+
+            // Se for o menu mobile, esconde-o após o clique
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // 7. Adiciona o listener de clique para todos os links com a classe 'scroll-link'
+        scrollLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                
+                const targetId = link.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    smoothScrollToCenter(targetElement);
+                } else {
+                    console.error(`Elemento alvo com ID '${targetId}' não encontrado.`);
+                }
+            });
+        });
+
+
+        // ======== LÓGICA DO MODAL DE RESERVA (NOVO) ========
+        const reserveButton = document.getElementById('reserve-button');
+        const reserveModal = document.getElementById('reserve-modal');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const modalOkButton = document.getElementById('modal-ok-button');
+
+        // Função para mostrar o modal
+        function showModal() {
+            reserveModal.classList.remove('hidden');
+            // Timeout para aplicar a transição (transform e opacity)
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10); 
+        }
+
+        // Função para esconder o modal
+        function hideModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            // Timeout para esconder o overlay após a transição
+            setTimeout(() => {
+                reserveModal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Event Listeners para o Modal
+        reserveButton.addEventListener('click', showModal);
+        closeModalButton.addEventListener('click', hideModal);
+        modalOkButton.addEventListener('click', hideModal);
+        
+        // Esconder o modal ao clicar fora (no overlay)
+        reserveModal.addEventListener('click', (e) => {
+            if (e.target === reserveModal) {
+                hideModal();
+            }
+        });
+
+
+        // 8. Inicialização:
+        document.addEventListener('DOMContentLoaded', () => {
+            // Garante que o carrossel tenha altura total da tela (menos a navbar)
+            const navbarHeight = 72; // Aproximadamente 4.5rem
+            carouselContainer.style.minHeight = (window.innerHeight - navbarHeight) + 'px';
+            
+            // Inicia o carrossel e o autoplay
+            showSlide(currentSlide);
+            resetInterval();
+        });
+
+        // Listener para redimensionamento da tela (melhor responsividade)
+        window.addEventListener('resize', () => {
+             const navbarHeight = 72;
+             carouselContainer.style.minHeight = (window.innerHeight - navbarHeight) + 'px';
+        });
+
     </script>
 </body>
 </html>
