@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weasley's Coffee Shop</title>
+    <!-- NOME DA LOJA ATUALIZADO NO TÍTULO -->
+    <title>Harry's Coffee Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&display=swap');
@@ -21,9 +22,9 @@
             font-family: 'Cinzel', serif;
         }
 
-        /* Sombra de texto dourada */
+        /* Sombra de texto dourada mais brilhante */
         .shadow-gold {
-            text-shadow: 2px 2px 4px #b8860b;
+            text-shadow: 0 0 7px #ffcc00, 0 0 15px #b8860b;
         }
 
         /* Estilo para garantir que o alvo da rolagem fique centralizado */
@@ -31,7 +32,7 @@
             scroll-margin-top: calc(50vh - 5rem); 
         }
 
-        /* Melhoria: Efeito de borda mágica nos itens do menu */
+        /* Efeito de borda mágica nos itens do menu */
         .menu-item-card {
             box-shadow: 0 0 15px rgba(184, 134, 11, 0.5);
             transition: all 0.3s ease;
@@ -52,15 +53,16 @@
     <!-- Navbar -->
     <nav class="p-4 md:p-6 fixed top-0 w-full z-50 bg-gray-900 bg-opacity-90 backdrop-blur-md shadow-2xl">
         <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo - Substituído por Imagem -->
+            <!-- Logo - MAIOR E MAIS CHAMATIVO -->
             <div class="flex items-center">
                 <img 
                     src="https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-2ddc-622f-9b3d-ec97cd5327f4/raw?se=2025-09-26T19%3A48%3A47Z&sp=r&sv=2024-08-04&sr=b&scid=72af18dd-4eff-5354-be09-a24611cbb9b3&skoid=38550de5-1fab-49d1-9ebb-83af5557cc43&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-26T16%3A58%3A19Z&ske=2025-09-27T16%3A58%3A19Z&sks=b&skv=2024-08-04&sig=ShDAsLdtgtqBekD1ABviGP7paQiglSPDABCnrKKE1S0%3D" 
-                    alt="Weasley's Logo" 
-                    class="w-10 h-10 object-contain mr-3 rounded-full"
-                    onerror="this.onerror=null;this.src='https://placehold.co/40x40/b8860b/000000?text=WL'"
+                    alt="Harry's Logo" 
+                    class="w-14 h-14 md:w-20 md:h-20 object-contain mr-3 rounded-full border-4 border-yellow-500 shadow-2xl transition-transform transform hover:scale-105"
+                    onerror="this.onerror=null;this.src='https://placehold.co/80x80/b8860b/000000?text=HP'"
                 >
-                <h1 class="text-2xl md:text-3xl font-bold cinzel shadow-gold">Weasley's Coffee Shop</h1>
+                <!-- NOME DA LOJA ATUALIZADO -->
+                <h1 class="text-3xl md:text-5xl font-bold cinzel shadow-gold transition-colors duration-300">Harry's Coffee Shop</h1>
             </div>
 
             <!-- Menu de navegação (Desktop) -->
@@ -68,7 +70,7 @@
                 <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="about">Sobre</a>
                 <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="menu">Destaques</a>
                 <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="media">Galeria</a>
-                <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="licensing">Licenças</a>
+                <a href="#" class="scroll-link hover:text-yellow-600 transition-colors duration-300" data-target="location">Localização</a>
             </div>
 
             <!-- Botão de menu mobile -->
@@ -85,7 +87,7 @@
         <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="about">Sobre</a>
         <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="menu">Destaques</a>
         <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="media">Galeria</a>
-        <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="licensing">Licenças</a>
+        <a href="#" class="scroll-link block text-center py-3 text-xl hover:text-yellow-600 transition-colors duration-300" data-target="location">Localização</a>
     </div>
 
     <!-- Carrossel de Destaque -->
@@ -93,16 +95,15 @@
         <!-- Slides Container -->
         <div id="slides-container" class="h-full">
             
-            <!-- Slide 1 (Aromas e Grãos) - Imagem 1 -->
+            <!-- Slide 1 (Aromas e Grãos) -->
             <div class="carousel-slide absolute top-0 left-0 w-full h-full duration-1000 ease-in-out transition-opacity flex items-center justify-center text-center p-4" style="background-image: url('https://plus.unsplash.com/premium_photo-1675237625862-d982e7f44696?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-attachment: fixed; padding-top: 8rem;">
                 <div class="bg-gray-900/20 p-6 md:p-8 rounded-xl backdrop-blur-sm">
-                    <!-- Ícone removido conforme solicitado -->
                     <h2 class="text-3xl md:text-5xl font-bold cinzel shadow-gold mb-2 text-white">Magia em Cada Gole</h2>
                     <p class="text-base md:text-lg italic text-yellow-300">Um lugar onde a fantasia encontra o sabor</p>
                 </div>
             </div>
 
-            <!-- Slide 2 (Leitura e Cozy) - Imagem 2 -->
+            <!-- Slide 2 (Leitura e Cozy) -->
             <div class="carousel-slide absolute top-0 left-0 w-full h-full duration-1000 ease-in-out transition-opacity opacity-0 flex items-center justify-center text-center p-4" style="background-image: url('https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-attachment: fixed; padding-top: 8rem;">
                 <div class="bg-gray-900/20 p-6 md:p-8 rounded-xl backdrop-blur-sm">
                     <h2 class="text-3xl md:text-5xl font-bold cinzel shadow-gold mb-2 text-white">Refúgio para Bruxo e Trouxa</h2>
@@ -110,7 +111,7 @@
                 </div>
             </div>
 
-            <!-- Slide 3 (Ambiente Aconchegante) - Imagem 3 -->
+            <!-- Slide 3 (Ambiente Aconchegante) -->
             <div class="carousel-slide absolute top-0 left-0 w-full h-full duration-1000 ease-in-out transition-opacity opacity-0 flex items-center justify-center text-center p-4" style="background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center; background-attachment: fixed; padding-top: 8rem;">
                 <div class="bg-gray-900/20 p-6 md:p-8 rounded-xl backdrop-blur-sm">
                     <h2 class="text-3xl md:text-5xl font-bold cinzel shadow-gold mb-2 text-white">Onde os Feitiços Acontecem</h2>
@@ -140,7 +141,7 @@
             <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Nossa História</h3>
             <div class="max-w-4xl mx-auto">
                 <p class="text-lg leading-relaxed text-center mb-4">
-                    No coração de um beco mágico, a Weasley's Coffee Shop é o refúgio perfeito para bruxos e trouxas. Nossos grãos são colhidos com feitiços de prosperidade e torrados com fogo de dragão, garantindo um aroma e sabor que transcendem o mundo comum.
+                    No coração de um beco mágico, a **Harry's Coffee Shop** é o refúgio perfeito para bruxos e trouxas. Nossos grãos são colhidos com feitiços de prosperidade e torrados com fogo de dragão, garantindo um aroma e sabor que transcendem o mundo comum.
                 </p>
                 <p class="text-lg leading-relaxed text-center italic text-yellow-500">
                     Venha se aquecer com uma dose de nossa poção do amor (ou apenas um cappuccino) e sinta a magia da nossa família em cada xícara.
@@ -178,7 +179,6 @@
                 <p class="text-xl text-yellow-300 italic mb-6 max-w-xl mx-auto">
                     Nosso cardápio completo é ainda maior, mas você só vai descobrir toda a magia nos visitando.
                 </p>
-                <!-- Botão agora tem o ID para ser interativo -->
                 <button id="reserve-button" class="px-10 py-4 bg-yellow-600 text-gray-900 font-bold cinzel text-xl rounded-xl shadow-2xl hover:bg-yellow-500 transition-all duration-300 transform hover:scale-[1.03] border-4 border-yellow-800">
                     Reservar Mesa Mágica
                 </button>
@@ -217,6 +217,33 @@
             </div>
         </section>
 
+        <!-- Seção de Localização -->
+        <section id="location" class="mb-20 scroll-target bg-gray-800/50 p-8 rounded-xl shadow-2xl border border-gray-700">
+            <h3 class="text-4xl cinzel font-bold text-center mb-8 shadow-gold">Onde Nos Encontrar</h3>
+            <div class="max-w-xl mx-auto text-center">
+                <p class="text-lg leading-relaxed text-gray-300 mb-4">
+                    Estamos escondidos no local mais mágico de todos! A entrada fica por trás do terceiro tijolo da esquerda, perto da loja de penas.
+                </p>
+                <div class="p-4 bg-gray-900 rounded-lg inline-block shadow-lg border border-yellow-700/50">
+                    <p class="text-2xl cinzel font-bold text-yellow-400">
+                        Beco Diagonal, Travessa 9 e Meia
+                    </p>
+                    <p class="text-md text-gray-400 mt-2">
+                        Próximo à Dedos de Mel e a Gemialidades Weasley.
+                    </p>
+                </div>
+                
+                <!-- Placeholder para mapa/iframe -->
+                <div class="mt-8">
+                    <h4 class="text-xl cinzel font-bold mb-2 text-yellow-600">Veja no Mapa (Trouxa)</h4>
+                    <div class="w-full h-64 bg-gray-700 rounded-lg flex items-center justify-center shadow-inner text-gray-400 italic">
+                        [Placeholder para Mapa do Google ou similar - a magia confunde o GPS!]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <!-- Seção de Licenciamento -->
         <section id="licensing" class="scroll-target bg-gray-800 rounded-lg p-8 shadow-2xl border border-gray-700">
             <h3 class="text-4xl cinzel font-bold text-center mb-6 shadow-gold">Licenciamento de Uso Visual</h3>
@@ -245,11 +272,12 @@
 
     <!-- Rodapé -->
     <footer class="bg-gray-900 text-center py-6 border-t border-gray-700 mt-20">
+        <!-- NOME DA LOJA ATUALIZADO -->
         <p class="text-sm text-gray-300">Desenvolvido com Magia e ❤️ para fins educacionais.</p>
         <p class="text-xs text-gray-500 mt-1">Todo o conteúdo temático de Harry Potter é propriedade intelectual de J.K. Rowling e Warner Bros. Entertainment. Este é um projeto de fã, sem fins comerciais.</p>
     </footer>
 
-    <!-- MODAL CUSTOMIZADO DE RESERVA (NOVO) -->
+    <!-- MODAL CUSTOMIZADO DE RESERVA -->
     <div id="reserve-modal" class="hidden fixed inset-0 z-[100] modal-overlay flex items-center justify-center p-4">
         <div class="bg-gray-800 p-8 rounded-xl shadow-2xl max-w-lg w-full transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
             <div class="flex justify-between items-start mb-4">
@@ -376,7 +404,8 @@
             const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
             const elementHeight = targetElement.offsetHeight;
             const viewportHeight = window.innerHeight;
-            const targetScrollPosition = elementPosition - (viewportHeight / 2) + (elementHeight / 2);
+            // Ajuste para rolar ligeiramente acima do centro para compensar a navbar
+            const targetScrollPosition = elementPosition - (viewportHeight / 2) + (elementHeight / 2) - 30; 
 
             window.scrollTo({
                 top: targetScrollPosition,
@@ -406,7 +435,7 @@
         });
 
 
-        // ======== LÓGICA DO MODAL DE RESERVA (NOVO) ========
+        // ======== LÓGICA DO MODAL DE RESERVA ========
         const reserveButton = document.getElementById('reserve-button');
         const reserveModal = document.getElementById('reserve-modal');
         const modalContent = document.getElementById('modal-content');
